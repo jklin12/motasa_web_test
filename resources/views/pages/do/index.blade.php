@@ -80,7 +80,10 @@ List
                                 </td>
                             </tr>
                             @empty
-                            <strong>Maaf!</strong> Belum ada data delivery order
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Maaf!</strong> Belum ada data delivery order
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                             @endforelse
                         </tbody>
                     </table>
