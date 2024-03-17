@@ -12,7 +12,7 @@ class DeliveryOrder extends Model
 
     protected $primaryKey = 'do_id';
 
-    protected $fillable = ['do_number','do_date','order_number','order_date','cust_name','cust_phone','cust_email','cust_address','do_notes','do_status'];
+    protected $fillable = ['do_number','do_date','order_number','order_date','cust_name','cust_phone','cust_email','cust_address','do_notes','do_status','do_from','do_from_detail','do_to','do_to_detail','courier_name','courier_service_name','shipping_duration','shipping_price'];
 
     protected $dates = ['order_date']; // Kolom 'tanggal' akan dianggap sebagai tipe data tanggal oleh Eloquent
 

@@ -74,7 +74,7 @@ List
                                     <a href="{{ route('do.show',$value->do_id)}}" class="btn   btn-info btn-sm">Detail</a>
                                 </td>
                                 <td>
-                                    @if($value->do_status != 'Approve')
+                                    @if($value->do_status != 'Approve' && $value->do_status != 'Reject')
                                     <a href="javascript:;" class="btn   btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{route('do.destroy', $value->do_id)}}" data-name="{{$value->do_number}}">Hapus</a>
                                     @endif
                                 </td>

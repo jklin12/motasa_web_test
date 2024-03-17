@@ -195,7 +195,7 @@ Create
 
                             </div>
                             <div class="col-md-2">
-                                 <a href="javascript:;" class="btn rounded-pill btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{route('p_order.destroy', $val->product_id)}}" data-name="{{$val->product_name}}">hapus</a>
+                                <a href="javascript:;" class="btn rounded-pill btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{route('p_order.destroy', $val->product_id)}}" data-name="{{$val->product_name}}">hapus</a>
                             </div>
                         </div>
                         @endforeach
@@ -276,7 +276,6 @@ Create
 <script src="{{ URL::asset('/assets/js/dynamic-form.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 <script>
-    checkCourier();
     $('#input-do-from').select2({
         placeholder: "Cari alamat pengirim",
         ajax: {
@@ -300,6 +299,24 @@ Create
     })
 
 
+
+    function iniShipping() {
+        var dataPengirim = new Option('<?= $do->do_from_detail ?>', '<?= $do->do_from ?>', false, false);
+        $('#input-do-from').append(dataPengirim).trigger('change');
+        var dataPenerima = new Option('<?= $do->do_to_detail ?>', '<?= $do->do_to ?>', false, false);
+        $('#input-do-to').append(dataPenerima).trigger('change');
+        checkCourier()
+        setTimeout(function() {
+            var radios = $('input:radio[name=selected_courier]');
+            console.log(radios)
+            if (radios.is(':checked') === false) {
+                radios.filter('[value=<?= $do->courier_name ?>]').prop('checked', true);
+            }
+        }, 2000);
+
+
+    }
+    iniShipping()
 
     function checkCourier() {
 
@@ -353,7 +370,7 @@ Create
     $('.deleteBtn').click(function() {
         var id = $(this).data('id');
         var name = $(this).data('name');
-         
+
         $('#deleteForm').attr('action', id)
         $('#deleteName').html(name);
     })
